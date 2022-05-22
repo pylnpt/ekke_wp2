@@ -1,13 +1,6 @@
 <?php
-
-
     class DotEnv
     {
-        /**
-         * The directory where the .env file can be located.
-         *
-         * @var string
-         */
         protected $path;
 
 

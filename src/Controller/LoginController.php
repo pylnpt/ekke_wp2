@@ -22,32 +22,40 @@ class LoginController{
     function UserLogout() {
         session_unset();
         session_destroy();
-        header('Location: index.php');
+        header('Location: ../View/index.php');
+        echo $_SESSION["username"];
     } 
 
     function UserLogin($username, $token) {
         $params = [
             ':username' => $username,
-            ':token' => sha1($password)
+            ':token' => sha1($token)
         ];
-        $query = "SELECT id, name,  password  FROM user WHERE username = :username AND token = :token";
+        $query = "SELECT id, username, token  FROM users WHERE username = :username AND token = :token";
 
         require_once "DbController.php";
         $dbfunctions = DbController::getInstance();
         $connection = $dbfunctions->connectToDatabase();
 
         $record = $dbfunctions->getRecord($query, $params);
-        if ($record['is_verify']!=="1"){return "activate";}
         if (!empty($record)) {
-            $_SESSION['user_id'] = $record["id_user"];
-            $_SESSION['name'] = $record['name'];   
-            header('Location: index.php');
+            $_SESSION['id'] = $record["id"];
+            $_SESSION['username'] = $record['username'];   
+            header('Location: ./index.php');
             return true;
         }
         return false;
     }
 
-
-
-
+    function GeUserRole($id){
+        require_once "DbController.php";
+        $params = [ ':id' => $id ];
+        $query = "SELECT role FROM users WHERE id = :id";
+        
+        $dbfunctions = DbController::getInstance();
+        $connection = $dbfunctions->connectToDatabase();
+        $record = $dbfunctions->getRecord($query, $params);
+        return $record["role"];
+    }
+        
 }

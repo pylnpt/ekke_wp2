@@ -59,9 +59,15 @@ class DbController
     function executeDML($queryString, $connection, $queryParams = [])
     {
 
+        $connection = $this->connectToDatabase();
         $statement = $connection->prepare($queryString);
+
+
+
+        // print_r($statement->errorCode());  echo "<br/>";
+        // print_r($statement->errorInfo());  echo "<br/>";
         $success = $statement->execute($queryParams);
-        $statement->closeCursor();
+        // $statement->closeCursor();
         $connection = null;
         return $success;
     }

@@ -60,7 +60,7 @@
 
 .circular-menu-button:hover {
     color: #fff;
-   text-decoration: none;
+    text-decoration: none;
 }
 
 .toggler {
@@ -82,4 +82,8 @@
 
 .circular-menu.active .toggler {
     transform: rotate(315deg);
+}
+
+ion-icon {
+    pointer-events: none;
 }
