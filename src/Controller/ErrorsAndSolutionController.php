@@ -22,10 +22,7 @@ class ErrorsAndSolutionController {
         require_once "DbController.php";
         $dbfunctions=DbController::getInstance();
         $connection=$dbfunctions->connectToDatabase();
-        $result=$dbfunctions->executeDML("
-        DELETE FROM errors WHERE id = {$error_id}
-        ", 
-        $connection);
+        $result=$dbfunctions->executeDML("DELETE FROM errors WHERE error_id = {$error_id}", $connection);
         
         return $result;
     }

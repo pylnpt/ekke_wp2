@@ -53,11 +53,11 @@ $(document).ready(function(){
     });
 
     $(".deleteBtn").on("click", function(){
-        console.log("shrex");
         let table = $(this).parent().parent(); 
         let errorId = $(table).find("td:eq(0)").text();
         let row = $(this).closest('tr');
-        data = errorId;
+
+        console.log(errorId);
 
 
         $.ajax({
@@ -65,7 +65,7 @@ $(document).ready(function(){
             type: 'POST',
             data: {
                 "whichFunction": "deleteError",
-                "data": data
+                "data": errorId
             },
             dataType: "JSON",
             async: false,
@@ -94,29 +94,3 @@ $(document).ready(function(){
         })
     })
 })
-
-// function reloadTable(){
-//     $.ajax({
-//         url: "./../Controller/ajaxController.php",
-//         type: 'POST',
-//         data: {
-//             "whichFunction": "updateError",
-//             "data": data
-//         },
-//         dataType: "JSON",
-//         async: false,
-//         success: function (response) {
-//             if (response) {
-//                 var row = $(this).parent().parent();
-//                 $(row).find("td:eq(0)").text($("#errorIdLbl").val());
-//                 $(row).find("td:eq(1)").text($("#errorNameLbl").val());
-//                 $(row).find("td:eq(2)").text($("#errorLevelLbl").val());
-//                 $(row).find("td:eq(3)").text($("#errorTypeLbl").val());
-//                 $(row).find("td:eq(4)").text($("#hasSolutionLbl").val());
-//                 alert("Error updated successfully!");
-//             } else {
-//                 alert("Upps... Something went wrong.");
-//             }
-//         }
-//     })
-// }

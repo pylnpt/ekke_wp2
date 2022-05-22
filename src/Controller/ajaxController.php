@@ -7,9 +7,6 @@ switch($_POST['whichFunction'])
     case "updateError":
         echo json_encode(updateError($_POST["data"]));
         break;
-    case "excelExport":
-        echo excelExport();
-        break;
     default:
     break;
 }
@@ -28,4 +25,6 @@ function deleteError($data){
     $controller = new ErrorsAndSolutionController();
     return $controller->deleteError($data);
 }
+
+
 ?>
